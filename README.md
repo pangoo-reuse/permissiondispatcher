@@ -4,7 +4,7 @@
 本项目类似于代码生成器，由于仓促，很多地方没有考虑好，希望大家指正，欢迎开启issue来讨论
      
 先上图（虽然也没有必要图，但大家喜欢就好）
-![image](https://github.com/YongHsiung/opensource/blob/master/anim.gif)
+![image](https://github.com/YoneHsiung/permissiondispatcher/blob/master/anim.gif)
 
 **`重要的事情说三次
 支持任意地方检测权限，任意地方检测权限，检测权限`**

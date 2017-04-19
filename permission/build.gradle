@@ -27,7 +27,6 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
-    compile project(':processor')
-//    compile 'com.xy.open.opensource:processor:1.1.4'
+    compile 'com.xy.open.opensource:processor:1.1.5'
 }
-//apply from: "java-update.gradle"
+apply from: "update.gradle"
