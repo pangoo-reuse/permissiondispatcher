@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deny" >deny</string>
+    <string name="no_grant_str" >This application does not work properly if denied !</string>
+    <string name="promise" >promise</string>
+    <string name="dialog_title">need some promise </string>
+</resources>
