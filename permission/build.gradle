@@ -22,9 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
     compile 'com.android.support:appcompat-v7:25.2.0'
     compile project(':processor')
+//    compile 'com.xy.open.opensource:processor:1.1.4'
 }
+//apply from: "java-update.gradle"
