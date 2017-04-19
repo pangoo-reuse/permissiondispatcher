@@ -11,6 +11,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.SOURCE)
 public @interface RequestPermissions {
+    boolean invoke() default true;
     String[] permissions() default "";
     int grantCode() default -1;
     String denyMessage() default "This application does not work properly if denied !";

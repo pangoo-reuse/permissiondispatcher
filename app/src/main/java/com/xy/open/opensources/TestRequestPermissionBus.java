@@ -14,14 +14,14 @@ import com.xy.open.RequestPermissions;
 public class TestRequestPermissionBus {
 
     @RequestPermissions(permissions = {Manifest.permission.WAKE_LOCK, Manifest.permission.ACCESS_FINE_LOCATION},
-            grantCode = 20000,denyMessage = "拒绝Test的权限应用将无法运行，很有可能死机哦")
+            grantCode = 20000,denyMessage = "拒绝Test的权限应用将无法运行，很有可能死机哦",invoke = true)
     public final int test(int i, String m, Activity activity, GrantListener listener) throws Exception {
         Log.d("TAG_TEST", "test M = " + m + " i = " + i + "object = " + activity);
         return i;
     }
 
     @RequestPermissions(permissions = {Manifest.permission.CALL_PHONE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, grantCode = 20001,
-            denyMessage = "拒绝Test1的CALL_PHONE权限应用将无法运行，很有可能爆炸哦"
+            denyMessage = "拒绝Test1的CALL_PHONE权限应用将无法运行，很有可能爆炸哦",invoke = false
     )
     public void test1(int i1, String m1, Object object1) throws RuntimeException, Exception {
         Log.d("TAG_TEST", "test1 M = " + m1 + " i = " + i1 + "object = " + object1);

@@ -116,7 +116,8 @@ public class PermissionsProcessor extends AbstractProcessor {
             String[] permissions = annotation.permissions();
             int grantCode = annotation.grantCode();
             String denyMessage = annotation.denyMessage();
-
+            boolean invoke = annotation.invoke();
+            properties.invoke = invoke;
             properties.grantCode = grantCode;
             properties.denyMessage = denyMessage;
             properties.permissions = Arrays.asList(permissions);
@@ -150,6 +151,16 @@ public class PermissionsProcessor extends AbstractProcessor {
                 }
                 properties.method = fullClassName + "." + simpleMethodName;
                 String methodName = buildMethodName(simpleMethodName);
+
+                        /*
+                        @MethodTarget("com.xy.open.opensources.TestRequestPermissionBus.test3")
+        	public  final void checkTest3WithPermissions(boolean invoke, java.lang.Object i3  , java.lang.String m3  , int activity3 ) throws java.lang.Exception{
+		System.out.println("test3 says hello!");
+		parser(this,invoke,"com.xy.open.opensources.TestRequestPermissionBus.test3",i3 , m3 , activity3);
+
+	}
+         */
+
                 bodyBuilder.append("\n\t@MethodTarget(\"" + properties.method + "\")\n");
                 bodyBuilder.append("\tpublic  final void " + methodName + "(");
 
@@ -193,17 +204,17 @@ public class PermissionsProcessor extends AbstractProcessor {
             } else {
                 methods = properties.method + "\"";
             }
+
             bodyBuilder.append("\t\tparser(this,\"" + methods + argBuilder.toString() + ");\n\n");
 
             bodyBuilder.append("\t}\n"); // close method
 
             property.properties.add(properties);
         }
-        bodyBuilder.append("\n\n\tpublic Property.Properties parser(PermissionCheck object, String method, Object... args) {\n" +
+        bodyBuilder.append("\tpublic Property.Properties parser(PermissionCheck object,String method, Object... args) {\n" +
                 "\t\tif (object != null) {\n" +
                 "\t\t\tfor (Property.Properties permission : permissions) {\n" +
                 "\t\t\t\tif (permission.method.equals(method)) {\n" +
-                "\t\t\t\t\tparser.setData(permission, args);\n" +
                 "\t\t\t\t\tparser.parse(permission, args);\n" +
                 "\t\t\t\t\treturn permission;\n" +
                 "\t\t\t\t}\n" +

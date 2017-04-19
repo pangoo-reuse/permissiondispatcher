@@ -70,10 +70,12 @@ public interface ParserBean {
             "        return parameterNames;\n" +
             "    }\n" +
             "\n" +
-            "    @Override\n" +
             "    public void parse(Property.Properties permission, Object... args) {\n" +
-            "        if (permission != null)\n" +
+            "        if (permission != null){\n" +
             "            innerParser(permission, args);\n" +
+            "            runTask();\n" +
+            "        }\n" +
+            "            \n" +
             "    }\n" +
             "\n" +
             "    private void innerParser(final Property.Properties permission, final Object... args) {\n" +
@@ -82,12 +84,12 @@ public interface ParserBean {
             "            dispatcher.setCheckedListener(new RequestListener() {\n" +
             "                @Override\n" +
             "                public void requestResult(int requestCode, String[] permissions, boolean promise) {\n" +
-            "                    run(permission.method, permission.paramPairs, promise, args);\n" +
+            "                    run(permission.invoke,permission.method, permission.paramPairs, promise, args);\n" +
             "                }\n" +
             "            });\n" +
             "            dispatcher.requestPermission(permission.grantCode, permissions);\n" +
             "        } else {\n" +
-            "            run(permission.method, permission.paramPairs, true, args);\n" +
+            "            run(permission.invoke,permission.method, permission.paramPairs, true, args);\n" +
             "        }\n" +
             "    }\n" +
             "\n" +
@@ -125,13 +127,21 @@ public interface ParserBean {
             "        }\n" +
             "    }\n" +
             "\n" +
-            "    public void run(String fullMethodName, LinkedHashMap<String, String> params, boolean promise, Object[] args) {\n" +
+            "    public void run(boolean invoke, String fullMethodName, LinkedHashMap<String, String> params, boolean promise, Object[] args) {\n" +
             "        String[] split = fullMethodName.split(\"\\\\.\");\n" +
             "        if (split != null && split.length != 0) {\n" +
             "            String simpleMethodName = split[split.length - 1];\n" +
             "            String className = fullMethodName.substring(0, fullMethodName.lastIndexOf(\".\" + simpleMethodName));\n" +
             "            ClassValue classes = getClasses(simpleMethodName, params, args);\n" +
+            "            if (invoke)\n" +
             "            invoke(className, simpleMethodName, promise, classes);\n" +
+            "            else {\n" +
+            "                if (callbacks.size() != 0) {\n" +
+            "                    GrantListener listener = callbacks.remove(simpleMethodName);\n" +
+            "                    if (listener != null)\n" +
+            "                        listener.onPromise(promise, null);\n" +
+            "                }\n" +
+            "            }\n" +
             "        }\n" +
             "    }\n" +
             "\n" +

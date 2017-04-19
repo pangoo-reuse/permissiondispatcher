@@ -29,8 +29,10 @@ public class Executor {
     public boolean remove(Runnable task){
         return threadPoolExecutor.remove(task);
     }
-    int i = 0;
     public void addTask(Runnable task) {
         threadPoolExecutor.execute(task);
+    }
+    public boolean running(Runnable task){
+        return threadPoolExecutor.getQueue().contains(task);
     }
 }

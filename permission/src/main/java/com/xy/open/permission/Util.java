@@ -28,9 +28,11 @@ public class Util {
                         JSONObject jsonObject = (JSONObject) jsonArray.get(i);
 
                         Property.Properties properties = new Property.Properties();
+                        boolean invoke = jsonObject.getBoolean("invoke");
                         int grantCode = jsonObject.getInt("grantCode");
                         String denyMessage = jsonObject.getString("denyMessage");
                         String method = jsonObject.getString("method");
+                        properties.invoke = invoke;
                         properties.grantCode = grantCode;
                         properties.denyMessage = denyMessage;
                         properties.method = method;

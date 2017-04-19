@@ -19,11 +19,13 @@ public final class Property {
         public String method;
         public LinkedHashMap<String, String> paramPairs;
         public List<String> permissions;
+        public boolean invoke;
 
         @Override
         public final String toString() {
             return "{" +
-                    "\"grantCode\":" + grantCode +
+                    "\"invoke\":" + invoke +
+                    ",\"grantCode\":" + grantCode +
                     ",\"denyMessage\":\"" + denyMessage + "\"" +
                     ",\"method\":\"" + method + '\"' +
                     ",\"paramPairs\":" +
