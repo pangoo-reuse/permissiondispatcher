@@ -8,7 +8,7 @@ def siteUrl = 'https://github.com/YoneHsiung/permissiondispatcher'// 项目的�
 def gitUrl = 'https://github.com/YoneHsiung/permissiondispatcher.git'// Git仓库的url
 group = "com.xy.open.opensource" // Maven Group ID for the artifact，一般填你唯一的包名
 // 版本号，下次更新是只需要更改版本号即可
-version = "1.1.5"
+version = "1.2.0"
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters

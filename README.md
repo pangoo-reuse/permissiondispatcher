@@ -19,7 +19,7 @@
 2.打开项目目录的build.gradle 
 
 	    dependencies {
-	        compile 'com.xy.open.opensource:permissionsdispatcher:1.1.0'
+	        compile 'com.xy.open.opensource:permission:latest.integration'
 	    }
  3.rebuild 项目
     
