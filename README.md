@@ -138,6 +138,9 @@
 			T 泛型，为权限检测方法的返回值类型，    
 			boolean promise  是否授权			
 
+>extra -> Permissions
+
+    这里有一个已经写好的Permission，如果需要，直接拷贝到自己的项目中，rebuild就可以不用再配置多余的权限了
 
 **License**
 
